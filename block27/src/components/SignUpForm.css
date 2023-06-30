@@ -1,0 +1,13 @@
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 20px;
+}
