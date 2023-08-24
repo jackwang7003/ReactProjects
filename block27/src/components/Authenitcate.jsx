@@ -3,7 +3,9 @@ import { useState} from 'react';
 
 export default function Authenitcate({token}) {
     const [error, setError] = useState(null);
-    const [successMessage, setSuccessMessage] = useState(null);
+    const [message, setMessage] = useState(null);
+    const [username, setUsername] = useState("");
+    
 
     async function handleClick() {
         try {
@@ -13,7 +15,12 @@ export default function Authenitcate({token}) {
             });
             const result = await response.json();
             console.log(result);
-            setSuccessMessage(result.message);
+            if (result.success) {
+                setMessage(result.message);
+                setUsername(result.data.username);
+                
+            } else {setMessage("Not Authenticated");}
+           
         } catch (err) {
             setError(err.message);
         }
@@ -24,8 +31,8 @@ export default function Authenitcate({token}) {
             <h2>Authenitcate!</h2>
             {error && <p>{error}</p>}
             <button type="submit" onClick={handleClick} >Authenticate Token</button>
-            {successMessage && <p>{successMessage}</p>}
-
+            {message && <p>{message} <br/>  Username: {username}</p>}
+                      
         </div>
       
 

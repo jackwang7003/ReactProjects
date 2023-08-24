@@ -9,6 +9,9 @@ export default function SignUpForm({token, setToken}) {
 
     async function handleSubmit(event) {
         event.preventDefault();
+        if (password.length < 8) {
+          setError("Password must be at least 8 characters long."); 
+          return;}
         
           try {
             
@@ -33,11 +36,11 @@ export default function SignUpForm({token, setToken}) {
         <h2>Sign Up!</h2>
         {error && <p>{error}</p>}
         <form className="signUpForm" onSubmit={handleSubmit}>
-            <label htmlFor="username">Username:{} 
-              <input value={username} onChange={(e) => setUsername(e.target.value)}/>
+            <label htmlFor="username">Username: 
+              <input value={username} onChange={(e) => {setUsername(e.target.value);setError("")}}/>
             </label>
-            <label htmlFor="password">Password:{} 
-              <input value={password} onChange={(e) => setPassword(e.target.value )}/>
+            <label htmlFor="password">Password: 
+              <input value={password} onChange={(e) => {setPassword(e.target.value);setError("")}}/>
               </label>
 
             <button type="submit">Submit</button>
